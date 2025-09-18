@@ -2,7 +2,7 @@
   "name": "ecommerce-final",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://MarianoMaldonado-dev.github.io/ShopEasy",
+  "homepage": "https://marianomaldonado-dev.github.io/ShopEasy/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
