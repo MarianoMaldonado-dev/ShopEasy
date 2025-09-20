@@ -19,6 +19,7 @@ export default function NavBar({ theme, setTheme }) {
       </div>
       <nav className="nav">
         <Link to="/">Inicio</Link>
+        <Link to="/categories">Categorias</Link>
         {currentUser && <Link to="/cart">Carrito de compras</Link>}
         {currentUser ? <>
           <Link to="/profile">Hola, {currentUser.name}</Link>
