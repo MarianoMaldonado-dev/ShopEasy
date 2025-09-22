@@ -12,6 +12,8 @@ import NavBar from './components/NavBar'
 import './styles.css'
 import githubIcon from './assets/github-mark-white.png'
 import { FaLinkedin } from 'react-icons/fa'
+import CategoriesPage from './pages/CategoriesPage'
+import CategoryDetailPage from './pages/CategoryDetailPage'
 
 export default function App(){
   const [theme, setTheme] = useState(()=> localStorage.getItem('ecom_theme') || 'light')
@@ -28,6 +30,8 @@ export default function App(){
           <Route path="/" element={<HomePage/>}/>
           <Route path="/products/:id" element={<ProductPage/>}/>
           <Route path="/cart" element={<CartPage/>}/>
+          <Route path="/categories" element={<CategoriesPage/>}/>
+          <Route path="/categories/:categoryId" element={<CategoryDetailPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
