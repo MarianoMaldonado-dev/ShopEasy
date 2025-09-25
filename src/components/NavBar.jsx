@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
 
-export default function NavBar({ theme, setTheme }) {
+export default function NavBar({ theme, setTheme, cartCount, onShowCart }) {
   const { currentUser, logout } = useContext(AuthContext)
   const nav = useNavigate()
   const toggle = () => {
@@ -20,7 +20,11 @@ export default function NavBar({ theme, setTheme }) {
       <nav className="nav">
         <Link to="/">Inicio</Link>
         <Link to="/categories">Categorias</Link>
-        {currentUser && <Link to="/cart">Carrito de compras</Link>}
+        {currentUser && (
+            <button className="button" onClick={onShowCart}>
+              Ver 🛒 {cartCount > 0 ? `(${cartCount})` : ""}
+            </button>
+        )}
         {currentUser ? <>
           <Link to="/profile">Hola, {currentUser.name}</Link>
           <button onClick={() => { logout(); nav('/') }}>Cerrar sesión</button>
