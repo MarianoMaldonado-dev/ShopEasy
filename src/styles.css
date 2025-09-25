@@ -172,7 +172,7 @@ body {
   border-radius: 6px;
 }
 
-.toast{
+.toast {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
@@ -180,6 +180,26 @@ body {
   color: white;
   padding: 0.6rem 0.9rem;
   border-radius: 6px;
+  z-index: 2000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+  font-size: 1rem;
+  font-weight: 500;
+  animation: toastIn 0.4s ease;
+}
+
+.toast.success {
+  background: var(--accent, #2563eb);
+  color: white;
+}
+
+.toast.error {
+  background: #ff8080;
+  color: #111;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .site-footer {
@@ -260,9 +280,159 @@ body {
   width: 24px;
   height: 24px;
   display: block;
-  color: inherit;          /* toma el color blanco del contenedor */
+  color: inherit;
 }
 
+/* Sección de componentes modales */
+/* Modal backdrop: fondo semitransparente */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal principal */
+.modal {
+  background: var(--card);
+  color: var(--text);
+  padding: 2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+  max-width: 400px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+/* Labels y campos */
+.modal label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.modal input,
+.modal textarea {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: var(--card);
+  color: var(--text);
+}
+[data-theme="dark"] .modal input,
+[data-theme="dark"] .modal textarea {
+  border: 1px solid #444;
+}
+
+/* Acciones del modal */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+/* Error del modal */
+.error {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* CartModal */
+/* El modal se agranda automáticamente hasta 4 productos, luego scrollea */
+.cart-modal {
+  min-width: 340px;
+  max-width: 480px;
+  max-height: 80vh; /* limita el modal al 80% de la altura de la ventana */
+  overflow-y: auto;
+}
+.cart-list {
+  max-height: 320px; /* reduce la altura del listado de productos */
+  overflow-y: auto;
+  margin-bottom: 1.2rem;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--muted);
+}
+.cart-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--bg);
+}
+.cart-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-cart-btn {
+  background: var(--accent, #2563eb);
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.empty-cart-btn:hover {
+  background: #1a44b7;
+}
+
+/* --- Formulario de pago dentro del modal --- */
+.cart-payment-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.cart-payment-form input {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  border: 1px solid var(--muted);
+  border-radius: 5px;
+  font-size: 1rem;
+  background: var(--card);
+  color: var(--text);
+}
+
+[data-theme="dark"] .cart-payment-form input {
+  border: 1px solid #444;
+}
+
+/* Mensajes de error y éxito */
+.error {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.success {
+  color: #388e3c;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Acciones del modal (botones) */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+/* Sección de Responsivo */
 @media (max-width: 800px) {
   .product-detail {
     grid-template-columns: 1fr;
@@ -274,7 +444,7 @@ body {
   }
 
   .logo-img {
-    width: 40px;      /* El logo se hace más chico en pantallas pequeñas */
+    width: 40px;      /* Tamaño del logo para pantallas pequeñas */
     margin-bottom: 3px;
   }
 }

@@ -1,6 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-export default function CartWidget({count}) {
-  return <Link to="/cart" className="button">Carrito ({count})</Link>
+export default function CartWidget({ count, onClick }) {
+  return (
+      <button className="button" onClick={onClick}>
+        Carrito ({count})
+      </button>
+  );
 }

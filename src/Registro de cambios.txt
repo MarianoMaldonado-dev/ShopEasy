@@ -1,0 +1,67 @@
+REGISTRO DE CAMBIOS:
+
+{/* ... */}
+Observaciones:
+--------------------------------------------------------------------------------
+- Todos los cambios buscan mejorar la usabilidad y coherencia de la interfaz.
+- Pendiente registrar el desarrollo previo al 23-09-2025 y futuras migraciones a backend.
+
+--------------------------------------------------------------------------------
+24-09-2025 | MEJORAS UX/UI PARA PUBLICACIÓN DE ARTÍCULOS
+--------------------------------------------------------------------------------
+- Eliminadas las funciones prompt y alert utilizadas originalmente para crear artículos.
+  Ahora, la creación de productos se realiza mediante un modal interactivo, mejorando la
+  experiencia de usuario.
+- Persistencia de nuevos productos sigue realizándose mediante LocalStorage hasta que
+  se implemente el backend y la base de datos correspondiente.
+- Se crea y agrega el componente 'CreateProductModal.jsx', reemplazando la funcionalidad
+  de los prompts y alerts. La interfaz es ahora más intuitiva y coherente con el estilo
+  de la aplicación.
+- Se actualizan los estilos en 'styles.css' para asegurar la integración visual del nuevo
+  modal con el resto del sitio.
+
+--------------------------------------------------------------------------------
+25-09-2025 | REFACTORIZACIÓN Y CORRECCIÓN DEL CARRITO DE COMPRAS
+--------------------------------------------------------------------------------
+- Refactorizado el sistema de carrito: ahora opera mediante un componente modal ('CartModal')
+  en lugar de una página dedicada (archivo 'CartPage.jsx' eliminado).
+- Se incorpora un formulario de pago simulado dentro del modal para completar la compra.
+- Si el carrito está vacío, el modal informa el estado y presenta un botón para cerrarlo.
+- Añadido botón en las tarjetas de producto para agregar directamente al carrito.
+- Añadido botón "Vaciar el carrito" dentro del modal de carrito.
+- Correcciones en la persistencia y visualización del estado del carrito.
+- La persistencia de los productos en el carrito continúa en LocalStorage hasta la futura
+  migración a backend.
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+TO-DO | PRÓXIMAS TAREAS DE DESARROLLO
+--------------------------------------------------------------------------------
+- Depurar y eliminar los archivos/bloques de código que antes funcionaban para CartPage y que ahora no son necesarios.
+
+- Refactorizar el formulario de contacto:
+    * Convertirlo en un modal en vez de página dedicada.
+    * Evaluar su ubicación: mantener en el navbar o implementar como botón flotante
+      visible en toda la app, asegurando que no interfiera con la experiencia de usuario
+      ni oculte otros elementos importantes.
+
+- Mejorar el panel de administrador (webmaster):
+    * Redefinir su funcionalidad para aportar valor real a la gestión del sitio.
+
+- Ampliar el dashboard/panel de usuario:
+    * Permitir al usuario cambiar su email y contraseña.
+    * Mostrar las publicaciones propias, con opciones para editarlas o eliminarlas.
+    * Evaluar e implementar otras funcionalidades útiles.
+
+- Implementar una barra de búsqueda de productos:
+    * Debe filtrar productos en tiempo real según la entrada del usuario, buscando tanto
+      en los productos de fakestoreapi como en los creados por usuarios.
+    * Si no hay coincidencias, mostrar mensaje de 'Producto no encontrado'.
+    * La barra de búsqueda debe integrarse en la vista principal de productos (HomePage)
+      y eliminar la necesidad de una página dedicada para la búsqueda.
+
+- Completar la página de 'Desarrolladores':
+    * Presentar al equipo autor de ShopEasy con información relevante y enlaces.
+--------------------------------------------------------------------------------

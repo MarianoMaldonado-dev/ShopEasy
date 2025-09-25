@@ -5,6 +5,7 @@ export const DataContext = createContext();
 const COMMENTS_KEY = 'ecom_comments';
 const QUESTIONS_KEY = 'ecom_questions';
 const USER_PRODUCTS = 'ecom_user_products';
+const CART_KEY = 'ecom_cart';
 
 function load(key) {
   try {
@@ -16,6 +17,7 @@ export function DataProvider({ children }) {
   const [comments, setComments] = useState(load(COMMENTS_KEY));
   const [questions, setQuestions] = useState(load(QUESTIONS_KEY));
   const [userProducts, setUserProducts] = useState(load(USER_PRODUCTS));
+  const [cartProducts, setCartProducts] = useState(load(CART_KEY));
 
   useEffect(() => {
     localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments));
@@ -28,6 +30,33 @@ export function DataProvider({ children }) {
   useEffect(() => {
     localStorage.setItem(USER_PRODUCTS, JSON.stringify(userProducts));
   }, [userProducts]);
+
+  useEffect(() => {
+    localStorage.setItem(CART_KEY, JSON.stringify(cartProducts));
+  }, [cartProducts]);
+
+  const addToCart = (product) => {
+    setCartProducts(prev => {
+      const existing = prev.find(p => p.id === product.id)
+      if (existing) {
+        return prev.map(p =>
+            p.id === product.id
+                ? { ...p, qty: (p.qty || 1) + 1 }
+                : p
+        )
+      } else {
+        return [...prev, { ...product, qty: 1 }]
+      }
+    })
+  }
+
+  const removeFromCart = (id) => {
+    setCartProducts(prev => prev.filter(p => p.id !== id));
+  };
+
+  const emptyCart = () => {
+    setCartProducts([]);
+  };
 
   const addComment = (productId, userId, userName, text) => {
     const c = { id: Date.now().toString(), productId, userId, userName, text, createdAt: new Date().toISOString() };
@@ -85,8 +114,24 @@ export function DataProvider({ children }) {
   };
 
   return (
-    <DataContext.Provider value={{ comments, questions, userProducts, addComment, deleteComment, addQuestion, answerQuestion, deleteQuestion, addUserProduct, deleteUserProduct }}>
-      {children}
-    </DataContext.Provider>
+      <DataContext.Provider value={{
+        comments,
+        questions,
+        userProducts,
+        cartProducts,
+        setCartProducts,
+        addToCart,
+        removeFromCart,
+        emptyCart,
+        addComment,
+        deleteComment,
+        addQuestion,
+        answerQuestion,
+        deleteQuestion,
+        addUserProduct,
+        deleteUserProduct
+      }}>
+        {children}
+      </DataContext.Provider>
   );
 }
