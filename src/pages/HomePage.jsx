@@ -13,6 +13,7 @@ export default function HomePage(){
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [showCartModal, setShowCartModal] = useState(false)
+  const [search, setSearch] = useState('');
 
   useEffect(()=> {
     fetch('https://fakestoreapi.com/products')
@@ -24,23 +25,22 @@ export default function HomePage(){
       .catch(()=> setLoading(false))
   }, [])
 
-   // Éste bloque de código va a ser retirado una vez que se haya testeado que funcionan los componentes modales.
-  /* const createSample = () => {
-     if (!currentUser) { alert('Debes identificarte antes de publicar un artículo'); return }
-     const title = prompt('Título del producto')
-     if (!title) return
-     const priceStr = prompt('Precio', '9.99')
-     const price = parseFloat(priceStr||'9.99') || 9.99
-     const description = prompt('Descripción','¡Vender en ShopEasy es genial!')
-     const image = prompt('Imagen URL (optional)','https://via.placeholder.com/300')
-     const p = { title, price, description, image, ownerId: currentUser.id }
-     addUserProduct(p)
-   } */
-
 const all = [...userProducts, ...products]
-    console.log("DESDE HOMEPAGE", { emptyCart, typeofEmptyCart: typeof emptyCart });
+const filteredProducts = all.filter(p =>
+        p.title.toLowerCase().includes(search.toLowerCase())
+    );
 return (
  <div>
+     <form className="searchForm" onSubmit={e => e.preventDefault()}>
+         <input
+             className="search"
+             type="text"
+             placeholder="Búsqueda"
+             value={search}
+             onChange={e => setSearch(e.target.value)}
+         />
+         <button className="seek" type="submit">🔍</button>
+     </form>
    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
      <h1>Productos</h1>
      <div>

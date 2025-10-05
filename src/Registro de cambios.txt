@@ -34,7 +34,22 @@ Observaciones:
   migración a backend.
 
 --------------------------------------------------------------------------------
+04-10-2025 | FUNCIÓN DE CUADRO DE BÚSQUEDA AGREGADO
+--------------------------------------------------------------------------------
+- Se incorpora la nueva función listada en TO-DO para buscar manualmente un producto.
+  La nueva funcionalidad se integra al frontend en la página HomePage pero aún no tiene lógica,
+  se espera que cuando el desarrollo del backend esté listo, se le implemente la lógica necesaria
+  para que haga el 'Match' con el ingreso del usuario buscando coincidencias en la base de datos.
 
+--------------------------------------------------------------------------------
+05-10-2025 | CORRECCIONES VARIAS
+--------------------------------------------------------------------------------
+- Se corrige la página de presentación del equipo de desarrollo. Ahora es completamente funcional y accesible
+  desde el footer, evitando sobrecargar el navbar innecesariamente.
+- Rediseño del estilo de botones, corrección de las 'cards' de productos. Algunas tarjetas de los productos
+  presentaban tamaños e inconsistencias entre sí, además que presentar 4 columnas sobrecargaba visualmente la página.
+  Se presenta ahora en columnas de 3 y todas las tarjetas presentan el mismo tamaño, si la información contenida excede,
+  se corta dando una función real al botón "Ver más".
 
 --------------------------------------------------------------------------------
 TO-DO | PRÓXIMAS TAREAS DE DESARROLLO
@@ -55,13 +70,17 @@ TO-DO | PRÓXIMAS TAREAS DE DESARROLLO
     * Mostrar las publicaciones propias, con opciones para editarlas o eliminarlas.
     * Evaluar e implementar otras funcionalidades útiles.
 
-- Implementar una barra de búsqueda de productos:
+{ - Implementar una barra de búsqueda de productos: (ACTUALMENTE EN DESARROLLO Y ESPERA DE BACKEND)
     * Debe filtrar productos en tiempo real según la entrada del usuario, buscando tanto
       en los productos de fakestoreapi como en los creados por usuarios.
     * Si no hay coincidencias, mostrar mensaje de 'Producto no encontrado'.
     * La barra de búsqueda debe integrarse en la vista principal de productos (HomePage)
-      y eliminar la necesidad de una página dedicada para la búsqueda.
+      y eliminar la necesidad de una página dedicada para la búsqueda. }
 
-- Completar la página de 'Desarrolladores':
-    * Presentar al equipo autor de ShopEasy con información relevante y enlaces.
+{ - Completar la página de 'Desarrolladores': (ACTUALMENTE FUNCIONAL. FALTA COMPLETAR INFORMACIÓN DEL EQUIPO)
+    * Presentar al equipo autor de ShopEasy con información relevante y enlaces. }
+
+- Acortar la cantidad de productos visibles en la vista principal:
+    * Debe acortar la cantidad a 6 productos, la siguiente lista de 6 productos debe continuar en una 'página siguiente'.
+      Ésto se llama sistema de paginación, hace que la cantidad de productos siga en otra página sin crear páginas adicionales.
 --------------------------------------------------------------------------------

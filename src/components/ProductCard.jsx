@@ -12,14 +12,15 @@ export default function ProductCard({p}) {
             <h3>{p.title}</h3>
             <p className="price">${(p.price||0).toFixed(2)}</p>
             <p>{p.description?.slice(0,100)}</p>
-            <Link to={`/products/${p.id}`} className="button">Ver</Link>
-            <button
-                className="button"
-                style={{marginLeft: '0.5rem'}}
-                onClick={() => addToCart(p)}
-            >
-                {inCart ? `Agregar otro (${inCart.qty})` : 'Agregar al carrito'}
-            </button>
+            <div className="card-actions">
+                <Link to={`/products/${p.id}`} className="button">Ver</Link>
+                <button
+                    className="button"
+                    onClick={() => addToCart(p)}
+                >
+                    {inCart ? `Agregar otro (${inCart.qty})` : 'Agregar al carrito'}
+                </button>
+            </div>
         </article>
     )
 }
