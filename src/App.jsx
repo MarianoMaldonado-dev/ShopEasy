@@ -7,10 +7,9 @@ import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import AdminPage from './pages/AdminPage'
 import ContactForm from './components/ContactForm'
+import Developers from './pages/Developers';
 import NavBar from './components/NavBar'
 import './styles.css'
-import githubIcon from './assets/github-mark-white.png'
-import { FaLinkedin } from 'react-icons/fa'
 import CategoriesPage from './pages/CategoriesPage'
 import CategoryDetailPage from './pages/CategoryDetailPage'
 import CartModal from './components/CartModal'
@@ -46,6 +45,7 @@ export default function App(){
           <Route path="/profile" element={<ProfilePage/>}/>
           <Route path="/admin" element={<AdminPage/>}/>
           <Route path="/contact" element={<ContactForm/>}/>
+          <Route path="/developers" element={<Developers />} />
         </Routes>
       </main>
       {showCartModal && (
@@ -61,24 +61,13 @@ export default function App(){
         <p className="copyright">&copy; Copyright &#124; ShopEasy &#124; {new Date().getFullYear()}</p>
         <p className="developBy">Desarrollado por &#123; 🔥PHOENIX&#60;🐦‍🔥&#62;CODE🔥 &#125; Soluciones
           Informáticas &#124; Mariano Maldonado</p>
-        <div className="social">
-
-          <div className="boxSocial">
-            <div className="githubIcon">
-              <section className="bckgrKatze">
-                <a className="perfil" href="https://github.com/MarianoMaldonado-dev"><img className="katze" src={githubIcon} alt="GitHub"/></a>
-              </section>
-            </div>
-          </div>
-
+        <div className="footer-link">
           <a
-              className="social-link linkedin"
-              href="https://www.linkedin.com/in/mariano-maldonado-810847288"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              className="developers-btn"
+              href="/developers"
+              aria-label="Desarrolladores"
           >
-            <FaLinkedin className="social-icon" />
+            Conozca al equipo de desarrollo
           </a>
         </div>
       </footer>

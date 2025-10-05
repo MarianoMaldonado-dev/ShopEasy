@@ -1,30 +1,30 @@
-:root{
-  --bg:#f5f7fb;
-  --card:#ffffff;
-  --text:#0b1220;
-  --muted:#6b7280;
-  --accent: #2563eb;
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #0b1220;
+  --muted: #6b7280;
+  --accent: transparent;
   --header: #1f2937;
 }
 
-[data-theme="dark"]{
+[data-theme="dark"] {
   --bg: #071024;
   --card: #0b1220;
   --text: #e6eef8;
   --muted: #9aa7bf;
-  --accent: #2563eb;
+  --accent: transparent;
   --header: #0f1724;
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: Inter, system-ui, Arial, sans-serif;
-  background: linear-gradient(180deg,var(--bg),#e6eef8);
-  color: var(--text)
+  background: linear-gradient(180deg, var(--bg), #e6eef8);
+  color: var(--text);
 }
 
 .app-header {
@@ -33,7 +33,7 @@ body {
   align-items: center;
   padding: 1rem 1.5rem;
   background: var(--header);
-  color: white
+  color: white;
 }
 
 .logo {
@@ -55,13 +55,55 @@ body {
   margin-bottom: 5px;
 }
 
-.nav a, .nav button {
+.nav a,
+.nav button {
   margin-left: 1rem;
   color: white;
   text-decoration: none;
   background: transparent;
   border: none;
-  cursor: pointer
+  cursor: pointer;
+}
+
+/* Contenedor de la barra de búsqueda */
+.searchForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*gap: 0.5rem;  En el caso de que se prefiera darle una separación visual al botón, descomentar ésta línea */
+  margin: 40px auto 32px auto;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: #9aa7bf 2px 2px 1px;
+
+}
+
+/* Input de búsqueda */
+.search {
+  font-size: 16px;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+  height: 40px;
+  width: 100%;
+  padding: 10px 15px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+/* Botón de búsqueda */
+.seek {
+  font-size: 1.5rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  height: 40px;
+  width: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
 }
 
 .container {
@@ -73,34 +115,123 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 1rem
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  color: var(--text);
+  border: 2px solid #4a9eff;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.button:hover {
+  background: #4a9eff;
+  color: #0b1220;
+  transform: translateY(-2px);
 }
 
 .card {
   background: var(--card);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.06)
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 300px;
+  height: 500px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 .card img {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 6px
+  border-radius: 6px;
 }
 
-.button {
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card .button {
   display: inline-block;
-  margin-top: 0.5rem;
   padding: 0.5rem 0.75rem;
   background: var(--accent);
   color: white;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
-  border: none;
-  cursor: pointer
+  border: 2px solid #4a9eff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  margin: 0;
+}
+
+.card .button:hover {
+  background: #4a9eff;
+  color: #0b1220;
+  transform: translateY(-2px);
+}
+
+.card .vermas-btn {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.card .vermas-btn:hover {
+  background: var(--accent);
+  color: var(--card);
+  transform: translateY(-2px);
+}
+
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
 }
 
 .price {
@@ -210,77 +341,27 @@ body {
   color: white;
 }
 
-.social {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.boxSocial{
-  display: flex;
-  flex-direction: row;
+.footer-link {
   margin-top: 10px;
+  text-align: center;
 }
 
-.githubIcon{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  right: 10px;
-}
-
-.katze{
-  width: 50px;
-  height: 50px;
-}
-
-.bckgrKatze{
-  display: flex;
-  flex-direction: row;
-  top: 2px;
-  position: relative;
-}
-
-.githubIcon:hover{
-  transform: scale(1.2);
-  box-shadow: 0 0 15px rgb(255, 255, 255);
-  border-radius: 10px;
-  transition: 1s all;
-}
-
-.social-link.linkedin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  background: #0a63bc;
+.developers-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
   color: #ffffff;
+  border: 2px solid #4a9eff;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
-  transition: transform .18s ease, box-shadow .18s ease;
-  cursor: pointer;
-  z-index: 2;
-  pointer-events: auto;
+  border-radius: 5px;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
 }
 
-.social-link.linkedin:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 15px rgb(255, 255, 255);
-  border-radius: 10px;
-  transition: 1s all;
-}
-
-.social-icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-  color: inherit;
+.developers-btn:hover {
+  background: #4a9eff;
+  color: #0b1220;
+  transform: translateY(-2px);
 }
 
 /* Sección de componentes modales */
@@ -301,7 +382,7 @@ body {
   color: var(--text);
   padding: 2rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+  box-shadow: 0 4px 32px rgba(255,255,255,0.13);
   max-width: 400px;
   width: 100%;
   font-size: 1rem;
@@ -382,12 +463,15 @@ body {
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   font-weight: 500;
-  border: none;
+  border: 2px solid #4a9eff;
   cursor: pointer;
   transition: background 0.2s;
 }
 .empty-cart-btn:hover {
-  background: #1a44b7;
+  background: #dc3545 !important;
+  border-color: #dc3545;
+  color: #ffffff;
+  transform: scale(1.02);
 }
 
 /* --- Formulario de pago dentro del modal --- */

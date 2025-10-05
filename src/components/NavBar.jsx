@@ -35,7 +35,6 @@ export default function NavBar({ theme, setTheme, cartCount, onShowCart }) {
         </>}
           <Link to="/contact">Contacto</Link>
         <button onClick={toggle} title="Toggle theme">{theme==='dark' ? 'Modo oscuro 🌙' : 'Modo claro 🌞'}</button>
-        <Link to="/developers">Desarrolladores</Link>
       </nav>
     </header>
   )

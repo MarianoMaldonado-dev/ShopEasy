@@ -54,18 +54,18 @@
       <p>Diseño y desarrollo Fullstack</p>
     </td>
     <td align='center'>
-      <h4>[Nombre]</h4>
-      <a href="https://github.com/" target="_blank">
-        <img width="110" src="https://via.placeholder.com/110?text=Avatar" style="border-radius: 50%;"/>
+      <h4>Leila Arévalo</h4>
+      <a href="https://github.com/Leilaare09" target="_blank">
+        <img width="110" src="https://avatars.githubusercontent.com/u/137370243?v=4" style="border-radius: 50%;"/>
       </a>
-      <p>[Rol]</p>
+      <p>Desarrollo Fullstack</p>
     </td>
     <td align='center'>
-      <h4>[Nombre]</h4>
-      <a href="https://github.com/" target="_blank">
-        <img width="110" src="https://via.placeholder.com/110?text=Avatar" style="border-radius: 50%;"/>
+      <h4>Griselda Chaparro</h4>
+      <a href="https://github.com/chaparrogriselda09-wq" target="_blank">
+        <img width="110" src="https://avatars.githubusercontent.com/u/227479594?v=4" style="border-radius: 50%;"/>
       </a>
-      <p>[Rol]</p>
+      <p>Desarrollo Fullstack</p>
     </td>
   </tr>
 </table>
