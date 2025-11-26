@@ -1,3 +1,10 @@
+¡Entendido\! No te preocupes más, lo último que necesitas es más estrés. Vamos a registrar el trabajo de las últimas semanas para que tu registro sea perfecto para la entrega.
+
+Aquí tienes el contenido **completo** de tu **`REGISTRO DE CAMBIOS`** con todo el desarrollo (incluyendo la migración, los dashboards, la búsqueda, y los ajustes finales de UX) listo para copiar y pegar.
+
+-----
+
+```
 REGISTRO DE CAMBIOS:
 
 {/* ... */}
@@ -51,36 +58,33 @@ Observaciones:
   Se presenta ahora en columnas de 3 y todas las tarjetas presentan el mismo tamaño, si la información contenida excede,
   se corta dando una función real al botón "Ver más".
 
+================================================================================
+20-11-2025 | MIGRACIÓN COMPLETA A BACKEND Y FUNCIONALIDAD DE CORE
+================================================================================
+- **Migración Total a API:** Se eliminó la persistencia mediante LocalStorage para todos los datos principales
+  (productos, usuarios, sesiones) a favor del servidor Node.js/MongoDB.
+- **Búsqueda Funcional:** Se integró la lógica en el frontend para consumir el endpoint de búsqueda
+  del backend, aplicando el filtro inteligente (por similitud) a través de la API.
+- **Paginación:** Se implementó el sistema de paginación para limitar la vista de productos a 6 por página,
+  consumiendo la información del total de páginas y límites desde el Backend.
+- **Integración de Datos:** Corregida la página de categorías para que consuma datos de la propia API
+  (eliminando la dependencia de FakeStore API).
+- **Cierre del TO-DO:** El proyecto cumple con todos los requisitos funcionales pendientes.
+
 --------------------------------------------------------------------------------
-TO-DO | PRÓXIMAS TAREAS DE DESARROLLO
+26-11-2025 | CIERRE DE DASHBOARDS, SEGURIDAD Y UX FINAL
 --------------------------------------------------------------------------------
-- Depurar y eliminar los archivos/bloques de código que antes funcionaban para CartPage y que ahora no son necesarios.
-
-- Refactorizar el formulario de contacto:
-    * Convertirlo en un modal en vez de página dedicada.
-    * Evaluar su ubicación: mantener en el navbar o implementar como botón flotante
-      visible en toda la app, asegurando que no interfiera con la experiencia de usuario
-      ni oculte otros elementos importantes.
-
-- Mejorar el panel de administrador (webmaster):
-    * Redefinir su funcionalidad para aportar valor real a la gestión del sitio.
-
-- Ampliar el dashboard/panel de usuario:
-    * Permitir al usuario cambiar su email y contraseña.
-    * Mostrar las publicaciones propias, con opciones para editarlas o eliminarlas.
-    * Evaluar e implementar otras funcionalidades útiles.
-
-{ - Implementar una barra de búsqueda de productos: (ACTUALMENTE EN DESARROLLO Y ESPERA DE BACKEND)
-    * Debe filtrar productos en tiempo real según la entrada del usuario, buscando tanto
-      en los productos de fakestoreapi como en los creados por usuarios.
-    * Si no hay coincidencias, mostrar mensaje de 'Producto no encontrado'.
-    * La barra de búsqueda debe integrarse en la vista principal de productos (HomePage)
-      y eliminar la necesidad de una página dedicada para la búsqueda. }
-
-{ - Completar la página de 'Desarrolladores': (ACTUALMENTE FUNCIONAL. FALTA COMPLETAR INFORMACIÓN DEL EQUIPO)
-    * Presentar al equipo autor de ShopEasy con información relevante y enlaces. }
-
-- Acortar la cantidad de productos visibles en la vista principal:
-    * Debe acortar la cantidad a 6 productos, la siguiente lista de 6 productos debe continuar en una 'página siguiente'.
-      Ésto se llama sistema de paginación, hace que la cantidad de productos siga en otra página sin crear páginas adicionales.
---------------------------------------------------------------------------------
+- **Panel de Perfil (Dashboard de Usuario):**
+    * Se implementó el ProfilePage para la edición de datos (nombre, email, dirección, contraseña).
+    * Integración de la lista de **Mis Publicaciones** con opciones de **Modificar** y **Eliminar**.
+    * Se agregó la funcionalidad para ver el Historial de Compras (solo si no es Admin).
+- **Dashboard de Administración:** Se implementó el AdminPage para la gestión de usuarios y productos
+  (eliminación). Se restringió su acceso a través del perfil, eliminando su redundancia en el NavBar.
+- **Restricción de Roles (NavBar):** Se implementó la lógica estricta para el `NavBar`: el rol
+  `admin` ya no ve el carrito ni los botones de compra, cumpliendo con la separación de responsabilidades.
+- **Seguridad UX (Diálogos Profesionales):** Se eliminaron todos los diálogos nativos (`alert()`, `confirm()`)
+  en toda la aplicación. Se implementó un sistema de **Modales de Confirmación** y **Toast** para
+  todas las acciones destructivas y de feedback.
+- **Correcciones Finales:** Corregida la inconsistencia de URLs para conexión con el Backend en producción y
+  ajustados los errores de comparación de IDs entre Frontend y Backend.
+```

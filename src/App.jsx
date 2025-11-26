@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import AdminPage from './pages/AdminPage'
 import ContactForm from './components/ContactForm'
+import NotFoundPage from './pages/NotFoundPage'
 import Developers from './pages/Developers';
 import NavBar from './components/NavBar'
 import './styles.css'
@@ -46,6 +47,8 @@ export default function App(){
           <Route path="/admin" element={<AdminPage/>}/>
           <Route path="/contact" element={<ContactForm/>}/>
           <Route path="/developers" element={<Developers />} />
+          <Route path="/404" element={<NotFoundPage/>}/>
+          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </main>
       {showCartModal && (

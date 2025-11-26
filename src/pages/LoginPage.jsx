@@ -8,11 +8,20 @@ export default function LoginPage(){
   const [error, setError] = useState('')
   const nav = useNavigate()
 
-  const submit = e => {
+  const submit = async e => {
     e.preventDefault()
-    const res = login(form)
-    if (!res.ok) setError(res.message || 'Email o contraseña Inválidos')
-    else nav('/')
+    const res = await login(form)
+
+    if (!res.ok) {
+      setError(res.message || 'Email o contraseña Inválidos')
+    } else {
+      //REDIRECCIONAMIENTO
+      if (res.role === 'admin') {
+        nav('/profile') //Si es administrador, va al panel Profile, de lo contrario va al HomePage
+      } else {
+        nav('/')
+      }
+    }
   }
 
   return (

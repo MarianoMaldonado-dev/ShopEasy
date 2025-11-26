@@ -2,9 +2,10 @@ import React, { createContext, useEffect, useState } from 'react';
 
 export const DataContext = createContext();
 
+const API_URL = 'https://shopeasyapi.onrender.com/api';
+
 const COMMENTS_KEY = 'ecom_comments';
 const QUESTIONS_KEY = 'ecom_questions';
-const USER_PRODUCTS = 'ecom_user_products';
 const CART_KEY = 'ecom_cart';
 
 function load(key) {
@@ -16,7 +17,6 @@ function load(key) {
 export function DataProvider({ children }) {
   const [comments, setComments] = useState(load(COMMENTS_KEY));
   const [questions, setQuestions] = useState(load(QUESTIONS_KEY));
-  const [userProducts, setUserProducts] = useState(load(USER_PRODUCTS));
   const [cartProducts, setCartProducts] = useState(load(CART_KEY));
 
   useEffect(() => {
@@ -26,10 +26,6 @@ export function DataProvider({ children }) {
   useEffect(() => {
     localStorage.setItem(QUESTIONS_KEY, JSON.stringify(questions));
   }, [questions]);
-
-  useEffect(() => {
-    localStorage.setItem(USER_PRODUCTS, JSON.stringify(userProducts));
-  }, [userProducts]);
 
   useEffect(() => {
     localStorage.setItem(CART_KEY, JSON.stringify(cartProducts));
@@ -96,28 +92,98 @@ export function DataProvider({ children }) {
     return false;
   };
 
-  const addUserProduct = (product) => {
-    const p = { ...product, id: Date.now().toString(), ownerId: product.ownerId || null, createdAt: new Date().toISOString() };
-    setUserProducts(prev => [p, ...prev]);
-    return p;
+  // ====================================================================
+  // CREAR PRODUCTO (POST /api/products)
+  // ====================================================================
+  const addUserProduct = async (product, token) => {
+    try {
+      const productData = {
+        title: product.title,
+        description: product.description || 'Sin descripción',
+        price: product.price,
+        image: product.image,
+        category: product.category || 'misc'
+      };
+
+      const response = await fetch(`${API_URL}/products`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(productData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error('Error al crear producto:', data.message || data.errors?.[0]?.msg || 'Error desconocido');
+        return null;
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error en la API al crear producto:', error);
+      return null;
+    }
   };
 
-  const deleteUserProduct = (productId, currentUser) => {
-    const p = userProducts.find(x => x.id === productId);
-    if (!p) return false;
-    if (!currentUser) return false;
-    if (currentUser.role === 'admin' || currentUser.id === p.ownerId) {
-      setUserProducts(prev => prev.filter(x => x.id !== productId));
-      return true;
+  // ====================================================================
+  // ACTUALIZAR PRODUCTO (PUT /api/products/)
+  // ====================================================================
+  const updateUserProduct = async (productId, productData, token) => {
+    try {
+      const response = await fetch(`${API_URL}/products/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(productData),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        console.error('Error al actualizar:', data.message);
+        return null;
+      }
+      return data;
+    } catch (error) {
+      console.error('Error al actualizar producto:', error);
+      return null;
     }
-    return false;
   };
+
+  // ====================================================================
+  // ELIMINAR PRODUCTO (DELETE /api/products/:id)
+  // ====================================================================
+  const deleteUserProduct = async (productId, token) => {
+    try {
+      const response = await fetch(`${API_URL}/products/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Usamos el token
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error al eliminar producto:', errorData.message || 'Error desconocido');
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+      return false;
+    }
+  };
+
 
   return (
       <DataContext.Provider value={{
         comments,
         questions,
-        userProducts,
         cartProducts,
         setCartProducts,
         addToCart,
@@ -129,6 +195,7 @@ export function DataProvider({ children }) {
         answerQuestion,
         deleteQuestion,
         addUserProduct,
+        updateUserProduct,
         deleteUserProduct
       }}>
         {children}

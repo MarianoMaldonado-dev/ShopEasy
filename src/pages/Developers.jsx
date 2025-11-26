@@ -21,20 +21,13 @@ const developers = [
         presentacion: "Hola"
     },
     {
-        nombre: "Leila Arévalo",
-        rol: "Desarrollo Fullstack",
-        github: "https://github.com/Leilaare09",
-        linkedin: "https://www.linkedin.com/",
-        avatar: "https://avatars.githubusercontent.com/u/137370243?v=4",
-        presentacion: "Hola"
-    },
-    {
         nombre: "Griselda Chaparro",
         rol: "Desarrollo Fullstack",
         github: "https://github.com/chaparrogriselda09-wq",
-        linkedin: "https://www.linkedin.com/",
-        avatar: "https://avatars.githubusercontent.com/u/227479594?v=4",
-        presentacion: "Hola"
+        linkedin: "https://www.linkedin.com/in/griselda-chaparro-6a2715213?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        avatar: "https://media.licdn.com/dms/image/v2/D4D35AQGA7Z6fQRX7Tw/profile-framedphoto-shrink_400_400/B4DZjTJCAxGkAs-/0/1755889017165?e=1764734400&v=beta&t=U0RDH1e0g7Y1Ta5YCLpy9uIUnjChUk26up7bt5dUSy0",
+        presentacion: "Soy Técnico Universitario en Programación con experiencia en desarrollo de software y como desarrolladora web jr.  \n" +
+            "Complemento mi formación con diplomaturas en Inteligencia Artificial con Python y Desarrollo Web, además de conocimientos en redes informáticas."
     },
 ];
 

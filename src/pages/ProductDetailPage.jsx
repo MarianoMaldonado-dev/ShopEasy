@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { DataContext } from '../contexts/DataContext'
 import { AuthContext } from '../contexts/AuthContext'
 
+const API_URL = 'https://shopeasyapi.onrender.com/api';
+
 export default function ProductDetailPage(){
   const { id } = useParams()
   const [product, setProduct] = useState(null)
@@ -15,21 +17,33 @@ export default function ProductDetailPage(){
   const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(()=>{
-    fetch(`https://fakestoreapi.com/products/${id}`)
-        .then(r=>{
-          if (!r.ok) throw new Error('Producto no encontrado')
-          return r.json()
-        })
-        .then(data=>{
-          setProduct(data)
-          setLoading(false)
-        })
-        .catch(()=> {
-          const up = JSON.parse(localStorage.getItem('ecom_user_products')||'[]')
-          const p = up.find(x=> x.id === id)
-          if (p) setProduct(p)
-          setLoading(false)
-        })
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`${API_URL}/products/${id}`);
+
+        if (!response.ok) {
+          throw new Error('Producto no encontrado en ShopEasy');
+        }
+
+        const data = await response.json();
+        const mappedProduct = {
+          ...data,
+          id: data._id,
+          price: parseFloat(data.price)
+        };
+
+        setProduct(mappedProduct);
+        setLoading(false);
+
+      } catch (error) {
+        console.error('Error al cargar el producto:', error);
+        setProduct(null);
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+
   },[id])
 
   const onAddComment = () => {
@@ -38,7 +52,7 @@ export default function ProductDetailPage(){
       setTimeout(() => setErrorMsg(''), 2000);
       return;
     }
-    addComment(id, currentUser.id, currentUser.name, commentText)
+    addComment(product.id, currentUser.id, currentUser.name, commentText)
     setCommentText('')
   }
 
@@ -48,20 +62,13 @@ export default function ProductDetailPage(){
       setTimeout(() => setErrorMsg(''), 2000);
       return;
     }
-    addQuestion(id, currentUser.id, currentUser.name, questionText)
+    addQuestion(product.id, currentUser.id, currentUser.name, questionText)
     setQuestionText('')
   }
 
-  const productComments = comments.filter(c=> c.productId === id)
-  const productQuestions = questions.filter(q=> q.productId === id)
-
-  if (loading) return <div>Cargando...</div>
-  if (!product) return <div>Producto no encontrado</div>
-
-  // Nuevo handler
   const handleAddToCart = () => {
     addToCart({
-      id: product.id,
+      id: product.id, // Usamos el ID mapeado
       title: product.title,
       price: product.price || 0,
       image: product.image
@@ -71,6 +78,11 @@ export default function ProductDetailPage(){
   }
 
   const qtyInCart = (cartProducts.find(p => p.id === product.id)?.qty) || 0
+    const productComments = comments.filter(c=> c.productId === id)
+  const productQuestions = questions.filter(q=> q.productId === id)
+
+  if (loading) return <div>Cargando...</div>
+  if (!product) return <div>Producto no encontrado</div>
 
   return (
       <div>
