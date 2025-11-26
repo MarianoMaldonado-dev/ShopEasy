@@ -25,7 +25,7 @@ export default function RegisterPage(){
         <input required type="password" placeholder="Contraseña" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/>
         <button className="button">Registrarse</button>
       </form>
-      <p>Importante: Si usted es administrador, porfavor, registre con el email finalizado en <code>@admin.com</code> proporcionado por el jefe de equipo de desarrollo.</p>
+      <p>Importante: Si usted es administrador, porfavor, registre con el email finalizado en <code>@admin.com</code> proporcionado por el equipo de desarrollo.</p>
     </div>
   )
 }

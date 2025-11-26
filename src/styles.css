@@ -147,8 +147,9 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 300px;
-  height: 500px;
-  overflow: hidden;
+  min-height: 500px;
+  height: auto;
+  overflow: visible;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -234,6 +235,20 @@ body {
   margin-top: auto;
 }
 
+/* Botón Eliminar producto (HomePage) */
+.delete-btn-inline {
+  border-color: #dc3545;
+  color: #dc3545;
+  transition: all 0.3s ease;
+}
+
+.delete-btn-inline:hover {
+  background-color: #dc3545 !important;
+  color: white !important;
+  transform: translateY(-2px);
+  border-color: #dc3545;
+}
+
 .price {
   font-weight: 700;
   color: var(--accent);
@@ -307,25 +322,28 @@ body {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
-  background: #111;
+  background: rgba(17, 17, 17, 0.95);
   color: white;
   padding: 0.6rem 0.9rem;
   border-radius: 6px;
   z-index: 2000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   font-size: 1rem;
   font-weight: 500;
   animation: toastIn 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .toast.success {
-  background: var(--accent, #2563eb);
+  background: #4a9eff;
   color: white;
+  border-color: #4a9eff;
 }
 
 .toast.error {
-  background: #ff8080;
-  color: #111;
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
 }
 
 @keyframes toastIn {

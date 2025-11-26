@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function CreateProductModal({ currentUser, addUserProduct, onClose }) {
+
+    const { currentUser: userWithToken } = useContext(AuthContext);
+    const token = userWithToken?.token;
+
     //Validación de Logueo. Si no hay usuario, muestra mensaje de acceso denegado
     if (!currentUser) {
         return (
@@ -14,17 +19,17 @@ export default function CreateProductModal({ currentUser, addUserProduct, onClos
         );
     }
 
-    // Estados locales para el formulario
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('9.99');
     const [description, setDescription] = useState('¡Vender en ShopEasy es genial!');
-    const [image, setImage] = useState('https://via.placeholder.com/300');
+    const [image, setImage] = useState('https://camo.githubusercontent.com/c8ad63a83bd6c5535bfaeba2157f5ad20e2e02ec2d0149972dd053ff53199bab/68747470733a2f2f692e706f7374696d672e63632f7a474373664662582f73686f70656173792d6c6f676f2e6a7067');
+    const [category, setCategory] = useState('Otros');
     const [error, setError] = useState('');
 
-    // Maneja el envío del formulario
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const priceNum = parseFloat(price);
+
         if (!title.trim()) {
             setError('El título es obligatorio');
             return;
@@ -33,15 +38,27 @@ export default function CreateProductModal({ currentUser, addUserProduct, onClos
             setError('El precio no puede ser negativo');
             return;
         }
+        // Verificacion del token antes de enviar
+        if (!token) {
+            setError('Error en la sesión: Token no encontrado. Intenta iniciar sesión de nuevo.');
+            return;
+        }
+
         const product = {
             title,
             price: priceNum,
             description,
             image,
-            ownerId: currentUser.id
+            category: category
         };
-        addUserProduct(product);
-        onClose();
+
+        const newProduct = await addUserProduct(product, token);
+
+        if (newProduct) {
+            onClose();
+        } else {
+            setError('Error al publicar. Revisa si todos los campos son válidos.');
+        }
     };
 
     return (
@@ -67,6 +84,19 @@ export default function CreateProductModal({ currentUser, addUserProduct, onClos
                             onChange={e => setPrice(e.target.value)}
                             required
                         />
+                    </label>
+                    <label>
+                        Categoría:
+                        <select
+                            value={category}
+                            onChange={e => setCategory(e.target.value)}
+                            required
+                        >
+                            <option value="electronica">Electrónica</option>
+                            <option value="indumentaria">Indumentaria</option>
+                            <option value="accesorios">Accesorios</option>
+                            <option value="misc">Otros</option>
+                        </select>
                     </label>
                     <label>
                         Descripción:
