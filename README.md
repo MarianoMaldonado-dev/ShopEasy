@@ -22,7 +22,7 @@
 
 <div style="text-align: left;">
   <ul>
-    <li><strong>Visualización de productos y categorías:</strong> Los productos y categorías se obtienen en tiempo real desde la API de FakeStore.</li>
+    <li><strong>Visualización de productos y categorías:</strong> Los productos y categorías se obtienen en tiempo real desde la API de ShopEasy.</li>
     <li><strong>Carrito de compras persistente:</strong> Puedes agregar, eliminar y vaciar productos. El estado del carrito se almacena en LocalStorage.</li>
     <li><strong>Registro e inicio de sesión local:</strong> Autenticación de usuarios y reconocimiento automático de administradores (email terminado en <code>@admin.com</code>).</li>
     <li><strong>Publicación de productos propios:</strong> Los usuarios pueden crear y publicar artículos mediante un formulario modal.</li>
