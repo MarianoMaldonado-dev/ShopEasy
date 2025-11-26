@@ -87,4 +87,18 @@ Observaciones:
   todas las acciones destructivas y de feedback.
 - **Correcciones Finales:** Corregida la inconsistencia de URLs para conexión con el Backend en producción y
   ajustados los errores de comparación de IDs entre Frontend y Backend.
-```
+
+--------------------------------------------------------------------------------
+26-11-2025 | CONFIGURACIONES FINALES Y DEPLOY
+--------------------------------------------------------------------------------
+- **Eliminar archivos viejos:**
+    * Se eliminan los viejos archivos que sirvieron de configuración para GHPages.
+    * Se quitan todas las líneas de código que hicieron de referencia para GitHub Pages.
+- **Crear nuevas configuraciones:**
+    * Se crea archivo vercel.json y se configura para el deploy en servidor de producción
+    * Se configura los servidores Vercel para frontend (https://shop-easy-taupe-eta.vercel.app/) y Render
+      para el backend (https://shopeasyapi.onrender.com/api/)
+    * Se construye el deploy y se hace test de las funciones.
+    * Se hace entrega del trabajo práctico luego de comprobar que cumple con todos los requisitos de los enunciados.
+
+----------------------------------------------------------------------------------

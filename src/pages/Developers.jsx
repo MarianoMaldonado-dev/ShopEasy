@@ -16,9 +16,9 @@ const developers = [
         nombre: "Yanina Osuna",
         rol: "Diseño y desarrollo Fullstack",
         github: "https://github.com/YaninaOsuna",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "Actualmente no presento perfil.",
         avatar: "https://avatars.githubusercontent.com/u/206969685?v=4",
-        presentacion: "Hola"
+        presentacion: "Soy estudiante de la Tecnicatura Universitaria en Informática, dando mis primeros pasos en el mundo de la tecnología. Aunque todavía tengo conocimientos iniciales, tengo muchas ganas de aprender, crecer y fortalecerme en el rubro. Me interesa avanzar de forma constante, desarrollar nuevas habilidades y construir una base sólida para mi futuro profesional en IT."
     },
     {
         nombre: "Griselda Chaparro",
